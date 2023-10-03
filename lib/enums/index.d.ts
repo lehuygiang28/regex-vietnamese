@@ -1,5 +1,6 @@
 export declare enum OutputCaseOptions {
     lowercase = "lowercase",
     uppercase = "uppercase",
-    both = "both"
+    both = "both",
+    sameInput = "sameInput"
 }
