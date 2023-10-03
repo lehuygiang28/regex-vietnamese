@@ -42,3 +42,9 @@ Options Properties
     console.log(regexBothCase); // /[hH][aáàảãạăắằẳẵặâấầẩẫậAÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬ][ ][nN][oóòỏõọôốồổỗộơớờởỡợOÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢ][iíìỉĩịIÍÌỈĨỊ][ ][oóòỏõọôốồổỗộơớờởỡợOÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢ][iíìỉĩịIÍÌỈĨỊ]/i
     ```
 
+## Contribution
+<a href="https://github.com/lehuygiang28/regex-vietnamese/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=lehuygiang28/regex-vietnamese" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
