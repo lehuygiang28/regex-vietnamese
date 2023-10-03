@@ -4,6 +4,9 @@
     "type": "git",
     "url": "https://github.com/lehuygiang28/regex-vietnamese"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/lehuygiang28"
+  },
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
