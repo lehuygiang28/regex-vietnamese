@@ -9,22 +9,22 @@ import { TGenerateSearchQuery } from './types';
  *
  * @example
  * const regex = generateRegexQuery({ keyword: 'Hà Nội oi' });
- * console.log(regex) // /[H][àáạảãâầấậẩẫăắằặẳẵ][][N][ộơờớợởỡ][iíìịỉĩ][][ộơờớợởỡ][iíìịỉĩ]/i
+ * console.log(regex) // /[H][à][ ][N][ộ][iíìỉĩị][ ][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị]/i
  *
  * // With sensitive option
  * const regex = generateRegexQuery({ keyword: 'Hà Nội oi', sensitive: true });
- * console.log(regex) // /[H][àáạảãâầấậẩẫăắằặẳẵ][N][ộơờớợởỡ][iíìịỉĩ]/
+ * console.log(regex) // /[H][à][ ][N][ộ][iíìỉĩị][ ][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị]/
  *
  * // With ignoreAccentedVietnamese option
  * const regex = generateRegexQuery({ keyword: 'Hà Nội oi', ignoreAccentedVietnamese: true });
- * console.log(regex) // /[H][aáàảãạăắằẳẵặâấầẩẫậ][N][oóòỏõọôốồổỗộơớờởỡợ][iíìịỉĩ]/
+ * console.log(regex) // /[H][aáàảãạăắằẳẵặâấầẩẫậ][ ][N][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị][ ][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị]/i
  *
  * @property keyword The keyword to search for.
- * @property caseSensitive Whether the search is case sensitive or not.
+ * @property sensitive Whether the search is case sensitive or not.
  * @property ignoreAccentedVietnamese Whether the search should ignore punctuation or not. It mean if true all punctuation will be replaced by original character.
  * @property outputCaseOptions Whether the regex should match lowercase, uppercase or both.
  * @default
- * caseSensitive false
+ * sensitive false
  * ignoreAccentedVietnamese false
  * outputCaseOptions 'both'
  *
