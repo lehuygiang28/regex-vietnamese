@@ -1,5 +1,6 @@
 # regex-vietnamese
-* `regex-vietnamese` is a JavaScript library that provides regular expressions for searching Vietnamese text with or without diacritical marks and with different variations of the same letter. It can be used to implement search functionality in applications that need to support Vietnamese text.
+
+`regex-vietnamese` is a JavaScript library that provides regular expressions for searching Vietnamese text with or without diacritical marks and with different variations of the same letter. It can be used to implement search functionality in applications that need to support Vietnamese text.
 
 Installation
 You can install `regex-vietnamese` using npm:
@@ -41,16 +42,3 @@ Options Properties
     console.log(regexBothCase); // /[hH][aáàảãạăắằẳẵặâấầẩẫậAÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬ][ ][nN][oóòỏõọôốồổỗộơớờởỡợOÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢ][iíìỉĩịIÍÌỈĨỊ][ ][oóòỏõọôốồổỗộơớờởỡợOÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢ][iíìỉĩịIÍÌỈĨỊ]/i
     ```
 
-
-
-
-
-## License
-MIT
-
-## Author
-<a href="https://github.com/lehuygiang28">
-  <div style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden;">
-    <img src="https://avatars.githubusercontent.com/lehuygiang28" alt="Author" style="width: 100%; height: auto;"/>
-  </div>
-</a>
