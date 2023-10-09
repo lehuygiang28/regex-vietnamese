@@ -1,44 +1,73 @@
 # regex-vietnamese
 
-`regex-vietnamese` is a JavaScript library that provides regular expressions for searching Vietnamese text with or without diacritical marks and with different variations of the same letter. It can be used to implement search functionality in applications that need to support Vietnamese text.
+A JavaScript/TypeScript library for searching Vietnamese text with or without diacritical marks and different variations of letters. Ideal for implementing search functionality in Vietnamese applications
 
-Installation
-You can install `regex-vietnamese` using npm:
-```sh
+Installation:
+Install `regex-vietnamese` with `npm`:
+```bash
 npm install regex-vietnamese
 ```
 
-Usage
-
-```javascript
-import { generateRegexQuery } from 'regex-vietnamese';
-const regex = generateRegexQuery({ keyword: 'Hà Nội oi' });
-console.log(regex); // /[H][à][ ][N][ộ][iíìỉĩị][ ][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị]/i
+Install `regex-vietnamese` with `yarn`:
+```bash
+yarn add regex-vietnamese
 ```
 
-Options Properties
+Install `regex-vietnamese` with `pnpm`:
+```bash
+pnpm add regex-vietnamese
+```
+
+Usage:
+```typescript
+// ES Modules
+import { generateRegexQuery } from 'regex-vietnamese';
+
+// CommonJS
+const { generateRegexQuery } = require('regex-vietnamese');
+```
+
+Parameters:
+```typescript
+const regex = generateRegexQuery(keyword, options);
+```
+* keyword - string - keyword to generate regex
+* option - TGenerateSearchQuery - options to generate regex:
+```typescript
+import { generateRegexQuery, TGenerateSearchQuery, OutputCaseOptions } from 'regex-vietnamese';
+const options: TGenerateSearchQuery = {
+    sensitive: false, // default: false
+    ignoreAccentedVietnamese: false, // default: false
+    outputCaseOptions: OutputCaseOptions.sameInput, // default: 'sameInput'
+};
+```
 
 - `sensitive`: boolean - default: false - case insensitive of output regex:
-    ```javascript
-    const regex = generateRegexQuery({ keyword: 'Hà Nội oi', sensitive: true });
+    ```typescript
+    const keyword = 'Hà Nội oi';
+    const options: TGenerateSearchQuery = { sensitive: true };
+    const regex = generateRegexQuery(keyword, options);
     console.log(regex); // /[H][à][ ][N][ộ][iíìỉĩị][ ][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị]/
     ```
 
-- `ignoreAccentedVietnamese`: boolean - default: false - ignore accented Vietnamese, all accented characters will be converted to non-accented characters. If this option is true, all character will be converted to regex-like character, otherwise, only non-accented characters will be converted to regex-like character (accented in here is Vietnamese accented character: High Rising Tone, Low Falling Tone, Low Rising Tone, High Broken Tone, Heavy Tone):
-    ```javascript
-    const regex = generateRegexQuery({ keyword: 'Hà Nội oi', ignoreAccentedVietnamese: true });
+- `ignoreAccentedVietnamese`: boolean - default: false - ignore accented Vietnamese, all accented characters will be converted to non-accented characters. If this option is true, all character will be converted to regex-like character, otherwise, only non-accented characters will be converted to regex-like character (accented characters is Vietnamese accented character: High Rising Tone, Low Falling Tone, Low Rising Tone, High Broken Tone, Heavy Tone):
+    ```typescript
+    const keyword = 'Hà Nội oi'
+    const regex = generateRegexQuery(keyword, { ignoreAccentedVietnamese: true });
     console.log(regex) // /[H][aáàảãạăắằẳẵặâấầẩẫậ][ ][N][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị][ ][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị]/i
     ```
 
 - `outputCaseOptions`: string - default: 'both' - output case options: 'lowercase', 'uppercase', 'both'. By default, output case will automatically same as input case:
-    ```javascript
-    const regex = generateRegexQuery({ keyword: 'Hà Nội oi', outputCaseOptions: 'lowercase' });
-    console.log(regex); // /[h][à][ ][n][ộ][iíìỉĩị][ ][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị]/i
+    ```typescript
+    const keyword = 'Hà Nội oi'
 
-    const regexUpperCase = generateRegexQuery({ keyword: 'Hà Nội oi', outputCaseOptions: 'uppercase' });
+    const regexLowercase = generateRegexQuery(keyword, { outputCaseOptions: 'lowercase' });
+    console.log(regexLowercase); // /[h][à][ ][n][ộ][iíìỉĩị][ ][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị]/i
+
+    const regexUpperCase = generateRegexQuery(keyword, { outputCaseOptions: 'uppercase' });
     console.log(regexUpperCase); // /[H][À][ ][N][Ộ][IÍÌỈĨỊ][ ][OÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢ][IÍÌỈĨỊ]/i
-    
-    const regexBothCase = generateRegexQuery({ keyword: 'Hà Nội oi', outputCaseOptions: 'both' });
+
+    const regexBothCase = generateRegexQuery(keyword, { outputCaseOptions: 'both' });
     console.log(regexBothCase); // /[hH][aáàảãạăắằẳẵặâấầẩẫậAÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬ][ ][nN][oóòỏõọôốồổỗộơớờởỡợOÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢ][iíìỉĩịIÍÌỈĨỊ][ ][oóòỏõọôốồổỗộơớờởỡợOÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢ][iíìỉĩịIÍÌỈĨỊ]/i
     ```
 
@@ -46,5 +75,3 @@ Options Properties
 <a href="https://github.com/lehuygiang28/regex-vietnamese/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=lehuygiang28/regex-vietnamese" />
 </a>
-
-Made with [contrib.rocks](https://contrib.rocks).

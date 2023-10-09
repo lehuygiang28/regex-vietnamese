@@ -12,18 +12,19 @@ import { OutputCaseOptions } from './enums';
  * and return the same case. If you want to change the output case, you can use the outputCaseOptions property.
  *
  * @example
- * const regex = generateRegexQuery({ keyword: 'Hà Nội oi' });
+ * const regex = generateRegexQuery('Hà Nội oi');
  * console.log(regex) // /[H][à][ ][N][ộ][iíìỉĩị][ ][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị]/i
  *
  * // With sensitive option
- * const regex = generateRegexQuery({ keyword: 'Hà Nội oi', sensitive: true });
+ * const regex = generateRegexQuery('Hà Nội oi', { sensitive: true });
  * console.log(regex) // /[H][à][ ][N][ộ][iíìỉĩị][ ][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị]/
  *
  * // With ignoreAccentedVietnamese option
- * const regex = generateRegexQuery({ keyword: 'Hà Nội oi', ignoreAccentedVietnamese: true });
+ * const regex = generateRegexQuery('Hà Nội oi', { ignoreAccentedVietnamese: true });
  * console.log(regex) // /[H][aáàảãạăắằẳẵặâấầẩẫậ][ ][N][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị][ ][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị]/i
  *
- * @property keyword The keyword to search for.
+ * @param keyword The keyword to search for.
+ *
  * @property sensitive Whether the search is case sensitive or not.
  * @property ignoreAccentedVietnamese Whether the search should ignore punctuation or not. It mean if true all punctuation will be replaced by original character.
  * @property outputCaseOptions Whether the regex should match lowercase, uppercase, sameInput or both.
@@ -34,12 +35,14 @@ import { OutputCaseOptions } from './enums';
  *
  * @returns A regular expression that matches the keyword with or without diacritical marks and with different variations of the same letter.
  */
-export function generateRegexQuery({
-    keyword,
-    sensitive = false,
-    ignoreAccentedVietnamese = false,
-    outputCaseOptions,
-}: TGenerateSearchQuery): RegExp {
+export function generateRegexQuery(
+    keyword: string,
+    options: TGenerateSearchQuery = {
+        sensitive: false,
+        ignoreAccentedVietnamese: false,
+        outputCaseOptions: OutputCaseOptions.sameInput,
+    },
+): RegExp {
     // Check that the keyword parameter is defined.
     if (keyword === undefined || keyword === null) {
         throw new Error('Keyword parameter is required');
@@ -50,13 +53,13 @@ export function generateRegexQuery({
     }
 
     // Remove diacritical marks from the keyword.
-    const normalizedKeyword: string = ignoreAccentedVietnamese
+    const normalizedKeyword: string = options.ignoreAccentedVietnamese
         ? diacritics.remove(keyword)
         : keyword;
 
     // Check that the outputCaseOptions parameter is defined.
     let variations: Map<string, string> = sideCaseMap;
-    switch (outputCaseOptions) {
+    switch (options.outputCaseOptions) {
         case OutputCaseOptions.lowercase:
             variations = sideLowerCaseMap;
             break;
@@ -78,12 +81,12 @@ export function generateRegexQuery({
             variations.get(char) ??
             new Set(
                 // If not a special character, return the character itself.
-                outputCaseOptions === OutputCaseOptions.both
+                options.outputCaseOptions === OutputCaseOptions.both
                     ? `${char.toLowerCase() + char.toUpperCase()}`
                     : char,
             );
         return `[${Array.from(variationsSet).join('')}]`;
     }).join('');
 
-    return new RegExp(regexString, sensitive ? '' : 'i');
+    return new RegExp(regexString, options.sensitive ? '' : 'i');
 }
