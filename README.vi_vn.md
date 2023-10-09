@@ -9,25 +9,26 @@
 </div>
 <br/>
 
-A JavaScript/TypeScript library for searching Vietnamese text with or without diacritical marks and different variations of letters. Ideal for implementing search functionality in Vietnamese applications
+Một thư viện JavaScript/TypeScript để hỗ trợ tìm kiếm văn bản tiếng Việt có hoặc không có dấu và các biến thể khác nhau của các chữ cái. Sử dụng để triển khai các chức năng tìm kiếm có tiếng Việt
 
-Installation:
-Install `regex-vietnamese` with `npm`:
+Cài đặt:
+
+Cài đặt `regex-vietnamese` với `npm`:
 ```bash
 npm install regex-vietnamese
 ```
 
-Install `regex-vietnamese` with `yarn`:
+Cài đặt `regex-vietnamese` với `yarn`:
 ```bash
 yarn add regex-vietnamese
 ```
 
-Install `regex-vietnamese` with `pnpm`:
+Cài đặt `regex-vietnamese` với `pnpm`:
 ```bash
 pnpm add regex-vietnamese
 ```
 
-Usage:
+Sử dụng:
 ```typescript
 // ES Modules
 import { generateRegexQuery } from 'regex-vietnamese';
@@ -36,22 +37,23 @@ import { generateRegexQuery } from 'regex-vietnamese';
 const { generateRegexQuery } = require('regex-vietnamese');
 ```
 
-Parameters:
+Các tham số:
 ```typescript
 const regex = generateRegexQuery(keyword, options);
 ```
-* keyword - string - keyword to generate regex
-* option - TGenerateSearchQuery - options to generate regex:
+
+* keyword - string - từ khóa để tạo regex
+* options - TGenerateSearchQuery - các tùy chọn để tạo regex:
 ```typescript
 import { generateRegexQuery, TGenerateSearchQuery, OutputCaseOptions } from 'regex-vietnamese';
 const options: TGenerateSearchQuery = {
-    sensitive: false, // default: false
-    ignoreAccentedVietnamese: false, // default: false
-    outputCaseOptions: OutputCaseOptions.sameInput, // default: 'sameInput'
+    sensitive: false, // mặc định: false
+    ignoreAccentedVietnamese: false, // mặc định: false
+    outputCaseOptions: OutputCaseOptions.sameInput, // mặc định: 'sameInput'
 };
 ```
 
-- `sensitive`: boolean - default: false - case insensitive of output regex:
+- `sensitive`: boolean - mặc định: false - không phân biệt chữ hoa chữ thường của regex
     ```typescript
     const keyword = 'Hà Nội oi';
     const options: TGenerateSearchQuery = { sensitive: true };
@@ -59,14 +61,14 @@ const options: TGenerateSearchQuery = {
     console.log(regex); // /[H][à][ ][N][ộ][iíìỉĩị][ ][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị]/
     ```
 
-- `ignoreAccentedVietnamese`: boolean - default: false - ignore accented Vietnamese, all accented characters will be converted to non-accented characters. If this option is true, all character will be converted to regex-like character, otherwise, only non-accented characters will be converted to regex-like character (accented characters is Vietnamese accented character: High Rising Tone, Low Falling Tone, Low Rising Tone, High Broken Tone, Heavy Tone):
+- `ignoreAccentedVietnamese`: boolean - mặc định: false - bỏ qua các ký tự tiếng Việt có dấu, tất cả các ký tự tiếng Việt có dấu sẽ được chuyển thành ký tự tiếng Việt không dấu. Nếu tùy chọn này là `true`, tất cả các ký tự sẽ được chuyển thành ký tự regex, nếu không, chỉ các ký tự tiếng Việt không dấu sẽ được chuyển thành ký tự regex (các ký tự tiếng Việt có dấu là các ký tự: Sắc, Huyền, Hỏi, Ngã, Nặng):
     ```typescript
     const keyword = 'Hà Nội oi'
     const regex = generateRegexQuery(keyword, { ignoreAccentedVietnamese: true });
     console.log(regex) // /[H][aáàảãạăắằẳẵặâấầẩẫậ][ ][N][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị][ ][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị]/i
     ```
 
-- `outputCaseOptions`: string - default: 'both' - output case options: 'lowercase', 'uppercase', 'both'. By default, output case will automatically same as input case:
+- `outputCaseOptions`: string - mặc định: 'sameInput' - tùy chọn chữ hoa chữ thường của regex: 'lowercase', 'uppercase', 'both'. Mặc định, chữ hoa chữ thường của regex sẽ tự động giống với chữ hoa chữ thường của từ khóa:
     ```typescript
     const keyword = 'Hà Nội oi'
 
@@ -80,7 +82,7 @@ const options: TGenerateSearchQuery = {
     console.log(regexBothCase); // /[hH][aáàảãạăắằẳẵặâấầẩẫậAÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬ][ ][nN][oóòỏõọôốồổỗộơớờởỡợOÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢ][iíìỉĩịIÍÌỈĨỊ][ ][oóòỏõọôốồổỗộơớờởỡợOÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢ][iíìỉĩịIÍÌỈĨỊ]/i
     ```
 
-## Contribution
+## Người đóng góp
 <a href="https://github.com/lehuygiang28/regex-vietnamese/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=lehuygiang28/regex-vietnamese" />
 </a>
