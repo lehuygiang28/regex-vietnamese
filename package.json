@@ -13,13 +13,16 @@
   ],
   "scripts": {
     "build": "tsc",
-    "prepare": "npm run build",
+    "prepare": "npm run test && npm run build",
     "test": "jest"
   },
   "keywords": [
     "regex",
     "vietnamese",
-    "regex-vietnamese"
+    "regex vietnamese",
+    "search vietnamese",
+    "search",
+    "vietnamese text search"
   ],
   "author": "lehuygiang28 <lehuygiang28@gmail.com>",
   "license": "MIT",
