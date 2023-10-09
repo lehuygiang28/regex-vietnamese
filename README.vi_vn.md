@@ -11,7 +11,7 @@
 
 Một thư viện JavaScript/TypeScript để hỗ trợ tìm kiếm văn bản tiếng Việt có hoặc không có dấu và các biến thể khác nhau của các chữ cái. Sử dụng để triển khai các chức năng tìm kiếm có tiếng Việt
 
-Cài đặt:
+## Cài đặt:
 
 Cài đặt `regex-vietnamese` với `npm`:
 ```bash
@@ -28,7 +28,7 @@ Cài đặt `regex-vietnamese` với `pnpm`:
 pnpm add regex-vietnamese
 ```
 
-Sử dụng:
+## Sử dụng:
 ```typescript
 // ES Modules
 import { generateRegexQuery } from 'regex-vietnamese';
@@ -42,8 +42,8 @@ Các tham số:
 const regex = generateRegexQuery(keyword, options);
 ```
 
-* keyword - string - từ khóa để tạo regex
-* options - TGenerateSearchQuery - các tùy chọn để tạo regex:
+* keyword - `string` - từ khóa để tạo regex
+* options - `TGenerateSearchQuery` - các tùy chọn để tạo regex:
 ```typescript
 import { generateRegexQuery, TGenerateSearchQuery, OutputCaseOptions } from 'regex-vietnamese';
 const options: TGenerateSearchQuery = {

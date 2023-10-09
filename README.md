@@ -11,7 +11,8 @@
 
 A JavaScript/TypeScript library for searching Vietnamese text with or without diacritical marks and different variations of letters. Ideal for implementing search functionality in Vietnamese applications
 
-Installation:
+## Installation:
+
 Install `regex-vietnamese` with `npm`:
 ```bash
 npm install regex-vietnamese
@@ -27,7 +28,7 @@ Install `regex-vietnamese` with `pnpm`:
 pnpm add regex-vietnamese
 ```
 
-Usage:
+## Usage:
 ```typescript
 // ES Modules
 import { generateRegexQuery } from 'regex-vietnamese';
@@ -40,8 +41,8 @@ Parameters:
 ```typescript
 const regex = generateRegexQuery(keyword, options);
 ```
-* keyword - string - keyword to generate regex
-* option - TGenerateSearchQuery - options to generate regex:
+* keyword - `string` - keyword to generate regex
+* option - `TGenerateSearchQuery` - options to generate regex:
 ```typescript
 import { generateRegexQuery, TGenerateSearchQuery, OutputCaseOptions } from 'regex-vietnamese';
 const options: TGenerateSearchQuery = {
