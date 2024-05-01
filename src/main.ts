@@ -16,10 +16,12 @@ import { OutputCaseOptions } from './enums';
  * console.log(regex) // /[H][à][ ][N][ộ][iíìỉĩị][ ][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị]/i
  *
  * // With sensitive option
+ * // Remove the last `i` in the regex
  * const regex = generateRegexQuery('Hà Nội oi', { sensitive: true });
  * console.log(regex) // /[H][à][ ][N][ộ][iíìỉĩị][ ][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị]/
  *
  * // With ignoreAccentedVietnamese option
+ * // Ignore current Vietnamese accents and find with all accents case
  * const regex = generateRegexQuery('Hà Nội oi', { ignoreAccentedVietnamese: true });
  * console.log(regex) // /[H][aáàảãạăắằẳẵặâấầẩẫậ][ ][N][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị][ ][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị]/i
  *
@@ -78,14 +80,18 @@ export function generateRegexQuery(
     // Generate the regex string.
     const regexString = Array.from(normalizedKeyword, (char: string) => {
         const variationsSet =
-            variations.get(char) ??
-            new Set(
-                // If not a special character, return the character itself.
-                options.outputCaseOptions === OutputCaseOptions.both
-                    ? `${char.toLowerCase() + char.toUpperCase()}`
-                    : char,
-            );
-        return `[${Array.from(variationsSet).join('')}]`;
+            variations.get(char) ||
+            // If not a special character, return the character itself.
+            (options.outputCaseOptions === OutputCaseOptions.both
+                ? `${char.toLowerCase() + char.toUpperCase()}`
+                : // Return with lowercase
+                options.outputCaseOptions === OutputCaseOptions.lowercase
+                ? char.toLowerCase()
+                : // Return with uppercase
+                options.outputCaseOptions === OutputCaseOptions.uppercase
+                ? char.toUpperCase()
+                : char);
+        return `[${variationsSet}]`;
     }).join('');
 
     return new RegExp(regexString, options.sensitive ? '' : 'i');

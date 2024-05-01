@@ -1,5 +1,5 @@
 import { generateRegexQuery, TGenerateSearchQuery } from '..';
-import { caseA, caseE, caseI, caseO, caseU, caseY, caseD } from '../constants';
+import { caseA, caseE, caseI, caseO, caseU, caseY, caseD, sideUppercaseMap } from '../constants';
 
 describe('generateRegexQuery', () => {
     it('should generate a regular expression that matches the keyword with or without diacritical marks and with different variations of the same letter', () => {
@@ -48,5 +48,23 @@ describe('generateRegexQuery', () => {
         expect(() => generateRegexQuery(keyword as any)).toThrow(
             'Keyword parameter must be a string',
         );
+    });
+
+    it('should generate a regex with all is lowercase', () => {
+        const keyword = 'Hà Nội';
+        const options: TGenerateSearchQuery = {
+            outputCaseOptions: 'lowercase',
+        };
+        const expectedRegex = new RegExp(`[h][à][ ][n][ộ][${caseI}]`, 'i');
+        expect(generateRegexQuery(keyword, options)).toEqual(expectedRegex);
+    });
+
+    it('should generate a regex with same case', () => {
+        const keyword = 'hà NộI';
+        const options: TGenerateSearchQuery = {
+            outputCaseOptions: 'sameInput',
+        };
+        const expectedRegex = new RegExp(`[h][à][ ][N][ộ][${sideUppercaseMap.get('i')}]`, 'i');
+        expect(generateRegexQuery(keyword, options)).toEqual(expectedRegex);
     });
 });
