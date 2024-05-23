@@ -1,4 +1,4 @@
-<h1>regex-vietnamese is no longer maintained; use [@vn-utils/text](https://npmjs.com/package/@vn-utils/text) instead</h1>
+# regex-vietnamese is no longer maintained; use [@vn-utils/text](https://npmjs.com/package/@vn-utils/text) instead
 
 <div style="text-align: center;">
     <h5>
