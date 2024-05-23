@@ -1,4 +1,4 @@
-# regex-vietnamese
+<h1>regex-vietnamese is no longer maintained; use @vn-utils/text instead</h1>
 
 <div style="text-align: center;">
     <h5>
