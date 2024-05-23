@@ -1,7 +1,7 @@
-import { OutputCaseOptions } from '../enums';
+export type OutputCase = 'same' | 'lower' | 'upper' | 'lowerAndUpper';
 
-export type TGenerateSearchQuery = {
+export type CreateRegexOptions = {
     sensitive?: boolean;
     ignoreAccentedVietnamese?: boolean;
-    outputCaseOptions?: OutputCaseOptions | string;
+    outputCase?: OutputCase;
 };

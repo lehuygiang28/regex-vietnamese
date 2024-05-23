@@ -6,7 +6,7 @@ export const caseU = 'uúùủũụưứừửữự';
 export const caseY = 'yýỳỷỹỵ';
 export const caseD = 'dđ';
 
-export const sideLowerCaseMap = new Map<string, string>([
+export const LOWER_CASE_MAP = new Map<string, string>([
     ['a', caseA],
     ['e', caseE],
     ['i', caseI],
@@ -23,7 +23,7 @@ export const sideLowerCaseMap = new Map<string, string>([
     ['D', caseD],
 ]);
 
-export const sideUppercaseMap = new Map<string, string>([
+export const UPPER_CASE_MAP = new Map<string, string>([
     ['a', caseA.toUpperCase()],
     ['e', caseE.toUpperCase()],
     ['i', caseI.toUpperCase()],
@@ -40,7 +40,7 @@ export const sideUppercaseMap = new Map<string, string>([
     ['D', caseD.toUpperCase()],
 ]);
 
-export const sideCaseMap = new Map<string, string>([
+export const SAME_CASE_MAP = new Map<string, string>([
     ['a', caseA],
     ['e', caseE],
     ['i', caseI],
@@ -57,7 +57,7 @@ export const sideCaseMap = new Map<string, string>([
     ['D', caseD.toUpperCase()],
 ]);
 
-export const allCaseOutput = new Map<string, string>([
+export const BOTH_LOWER_UPPER_CASE_MAP = new Map<string, string>([
     ['a', caseA + caseA.toUpperCase()],
     ['e', caseE + caseE.toUpperCase()],
     ['i', caseI + caseI.toUpperCase()],
