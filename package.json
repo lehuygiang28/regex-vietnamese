@@ -4,7 +4,7 @@
         "type": "git",
         "url": "git+https://github.com/lehuygiang28/regex-vietnamese.git"
     },
-    "version": "2.0.3",
+    "version": "2.0.4",
     "description": "A JavaScript/TypeScript library for searching Vietnamese text with or without diacritical marks and different variations of letters. Ideal for implementing search functionality in Vietnamese applications",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",

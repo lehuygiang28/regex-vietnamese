@@ -14,21 +14,25 @@ Một thư viện JavaScript/TypeScript để hỗ trợ tìm kiếm văn bản 
 ## Cài đặt:
 
 Cài đặt `regex-vietnamese` với `npm`:
+
 ```bash
 npm install regex-vietnamese
 ```
 
 Cài đặt `regex-vietnamese` với `yarn`:
+
 ```bash
 yarn add regex-vietnamese
 ```
 
 Cài đặt `regex-vietnamese` với `pnpm`:
+
 ```bash
 pnpm add regex-vietnamese
 ```
 
 ## Sử dụng:
+
 ```typescript
 // ES Modules
 import { generateRegexQuery } from 'regex-vietnamese';
@@ -38,12 +42,14 @@ const { generateRegexQuery } = require('regex-vietnamese');
 ```
 
 Các tham số:
+
 ```typescript
 const regex = generateRegexQuery(keyword, options);
 ```
 
-* keyword - `string` - từ khóa để tạo regex
-* options - `TGenerateSearchQuery` - các tùy chọn để tạo regex:
+-   keyword - `string` - từ khóa để tạo regex
+-   options - `TGenerateSearchQuery` - các tùy chọn để tạo regex:
+
 ```typescript
 import { generateRegexQuery, TGenerateSearchQuery, OutputCaseOptions } from 'regex-vietnamese';
 const options: TGenerateSearchQuery = {
@@ -53,7 +59,8 @@ const options: TGenerateSearchQuery = {
 };
 ```
 
-- `sensitive`: boolean - mặc định: false - không phân biệt chữ hoa chữ thường của regex
+-   `sensitive`: boolean - mặc định: false - không phân biệt chữ hoa chữ thường của regex
+
     ```typescript
     const keyword = 'Hà Nội oi';
     const options: TGenerateSearchQuery = { sensitive: true };
@@ -61,16 +68,18 @@ const options: TGenerateSearchQuery = {
     console.log(regex); // /[H][à][ ][N][ộ][iíìỉĩị][ ][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị]/
     ```
 
-- `ignoreAccentedVietnamese`: boolean - mặc định: false - bỏ qua các ký tự tiếng Việt có dấu, tất cả các ký tự tiếng Việt có dấu sẽ được chuyển thành ký tự tiếng Việt không dấu. Nếu tùy chọn này là `true`, tất cả các ký tự sẽ được chuyển thành ký tự regex, nếu không, chỉ các ký tự tiếng Việt không dấu sẽ được chuyển thành ký tự regex (các ký tự tiếng Việt có dấu là các ký tự: Sắc, Huyền, Hỏi, Ngã, Nặng):
+-   `ignoreAccentedVietnamese`: boolean - mặc định: false - bỏ qua các ký tự tiếng Việt có dấu, tất cả các ký tự tiếng Việt có dấu sẽ được chuyển thành ký tự tiếng Việt không dấu. Nếu tùy chọn này là `true`, tất cả các ký tự sẽ được chuyển thành ký tự regex, nếu không, chỉ các ký tự tiếng Việt không dấu sẽ được chuyển thành ký tự regex (các ký tự tiếng Việt có dấu là các ký tự: Sắc, Huyền, Hỏi, Ngã, Nặng):
+
     ```typescript
-    const keyword = 'Hà Nội oi'
+    const keyword = 'Hà Nội oi';
     const regex = generateRegexQuery(keyword, { ignoreAccentedVietnamese: true });
-    console.log(regex) // /[H][aáàảãạăắằẳẵặâấầẩẫậ][ ][N][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị][ ][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị]/i
+    console.log(regex); // /[H][aáàảãạăắằẳẵặâấầẩẫậ][ ][N][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị][ ][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị]/i
     ```
 
-- `outputCaseOptions`: string - mặc định: 'sameInput' - tùy chọn chữ hoa chữ thường của regex: 'lowercase', 'uppercase', 'both'. Mặc định, chữ hoa chữ thường của regex sẽ tự động giống với chữ hoa chữ thường của từ khóa:
+-   `outputCaseOptions`: string - mặc định: 'sameInput' - tùy chọn chữ hoa chữ thường của regex: 'lowercase', 'uppercase', 'both'. Mặc định, chữ hoa chữ thường của regex sẽ tự động giống với chữ hoa chữ thường của từ khóa:
+
     ```typescript
-    const keyword = 'Hà Nội oi'
+    const keyword = 'Hà Nội oi';
 
     const regexLowercase = generateRegexQuery(keyword, { outputCaseOptions: 'lowercase' });
     console.log(regexLowercase); // /[h][à][ ][n][ộ][iíìỉĩị][ ][oóòỏõọôốồổỗộơớờởỡợ][iíìỉĩị]/i
@@ -82,7 +91,14 @@ const options: TGenerateSearchQuery = {
     console.log(regexBothCase); // /[hH][aáàảãạăắằẳẵặâấầẩẫậAÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬ][ ][nN][oóòỏõọôốồổỗộơớờởỡợOÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢ][iíìỉĩịIÍÌỈĨỊ][ ][oóòỏõọôốồổỗộơớờởỡợOÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢ][iíìỉĩịIÍÌỈĨỊ]/i
     ```
 
+## Hỗ trợ
+
+#### Đây là một dự án mã nguồn mở và miễn phí. Nếu bạn thấy nó hữu ích, hãy xem xét hỗ trợ bằng cách tặng một ⭐️ trên [GitHub](https://github.com/lehuygiang28/text) và mua tác giả một cốc cà phê.
+
+<a href="https://www.buymeacoffee.com/lehuygiang28" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png" alt="Buy Me A Coffee"></a>
+
 ## Người đóng góp
+
 <a href="https://github.com/lehuygiang28/regex-vietnamese/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=lehuygiang28/regex-vietnamese" />
 </a>
